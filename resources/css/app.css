@@ -1,0 +1,47 @@
+html {
+	font-size: 16px;
+}
+body {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 1rem;
+	line-height: 1.5;
+	background:  #ccc;
+	margin: 0;
+}
+label {
+	display: inline-block;
+	width: 100px;
+	padding: 5px;
+	margin: 5px;
+	text-align: right;
+}
+input, select{
+	padding: 5px;
+}
+#content {
+	max-width:  600px;	
+    margin-right: auto;
+    margin-left: auto;
+    clear:both;
+	background:  #fff;
+	padding: 20px;
+}
+.export-holder{
+	text-align:  center;
+
+}
+.export-button {
+	font-size: 2em;
+	border-radius:  5px;
+    background-color: #2896dd;
+    border-color: #2088cb;
+    color: #fff;
+    padding: 8px 12px 7px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .5px;
+}
+
+.fieldholder{
+
+}

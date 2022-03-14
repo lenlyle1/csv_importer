@@ -1,0 +1,24 @@
+{
+    "orders": [
+        {
+            "name": "100x Business Cards",
+            "order_date": "2020-01-05",
+            "subtotal": 121.99,
+            "vat": 24.40
+        },
+
+        {
+            "name": "500x Flyers",
+            "order_date": "2020-01-05",
+            "subtotal": 471.64,
+            "vat": 0
+        },
+
+        {
+            "name": "500x Brochures",
+            "order_date": "2020-01-05",
+            "subtotal": 596,
+            "vat": 119.2
+        }
+    ]
+}
