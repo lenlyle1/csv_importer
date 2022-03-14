@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Importer;
+use App\Models\Order;
 
 class ExportController extends Controller
 {
@@ -14,21 +15,39 @@ class ExportController extends Controller
 
     }
 
-    public function exportCsv()
+    public function exportCsv(Request $request)
     {
-        $sortField = null;
-
         $filename = 'orders.csv';
 
         // load the files and parse into consistent object
         $importer = new Importer();
         $orders = $importer->importAll();
 
-        if(!empty($sortField)){
-            $sorted = $orders->sortBy($sortField);
+        foreach($orders as $line){
+            $line->order_date = date('d/m/Y', $line->order_ts);
         }
 
-        dd($_GET);
+        if(!empty($request->input('daterange'))){
+            $dateRange = $request->input('daterange');
+            $dateBits = explode(' - ', $dateRange);
+
+            $order = new Order();
+            $startTs = $order->convertOrderDate($dateBits[0]);
+            $endTs = $order->convertOrderDate($dateBits[1]);
+
+            $orders = $orders->whereBetween('order_ts', [$startTs, $endTs]);
+        }
+
+        if(!empty($request->input('sort_by'))){
+            $orders = $orders->sortBy($request->input('sort_by'));
+        }
+
+
+        // foreach($orders as $line){
+        //     dump($line);
+        // }
+        // dd($orders);
+
         $headers = array(
             "Content-type"        => "text/csv",
             "Content-Disposition" => "attachment; filename=$filename",

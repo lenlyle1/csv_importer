@@ -16,8 +16,9 @@
 		<script type="text/javascript">
 			
 function exportTasks(_this) {
-  	let _url = $(_this).data('href');
-  	window.location.href = _url;
+  // let _url = $(_this).data('href');
+  var _url = '/export?sort_by=' + $('#sort_by').val() + '&daterange=' + $('#daterange').val() ;
+  window.location.href = _url;
 }
 		</script>
 	</head>
@@ -26,25 +27,28 @@ function exportTasks(_this) {
 			<div>
 				<h1>CSV Exporter</h1>
 			</div>
-			<form id="exportFilters">
+			<form id="exportFilters" method="get" action="/export">
 				<div class="fieldholder">
 					<label for="daterange" >Date Range</label>
-					<input id="daterage" type="text" name="datetimes" />
+					<input id="daterange" type="text" name="datetimes" />
 				</div>
 				<div class="fieldholder">
 					<label for="sort_by" >Sort By</label>
 					<select name="sort_by" id="sort_by">
 						<option value=""></option>
-						<option value="name">Name</option>
-						<option value="order_date">Order Date</option>
+						<option value="product_name">Name</option>
+						<option value="order_ts">Order Date</option>
+						<option value="vat_percentage">Vat Rate</option>
+						<option value="vat_paid">Vat Paid</option>
 						<option value="subtotal">Subtotal</option>
-						<option value="total">Total</option>
+						<option value="order_total">Total</option>
 					</select>
 
 				
 				</div>
 				<div class="export-holder">
 					<span data-href="/export" id="export" class="btn btn-success btn-sm" onclick="exportTasks(event.target);">Export</span>
+
 				</div>
 			</form>
 		</div>
@@ -58,6 +62,7 @@ function exportTasks(_this) {
 
 
 		<script>
+			var startDate, endDate;
 			$(function() {
 			    $('input[name="datetimes"]').daterangepicker({
 				    timePicker: true,
@@ -67,7 +72,10 @@ function exportTasks(_this) {
 				    locale: {
 				      format: 'DD-MM-YYYY'
 				    }
-			    });
+			    }, function(start, end, label) {
+			    	startDate = start.format('YYYY-MM-DD');
+			    	endDate = end.format('YYYY-MM-DD');
+				});
 			});
 		</script>
 

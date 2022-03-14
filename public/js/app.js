@@ -27,15 +27,11 @@ $(function () {
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
   });
 });
-$('exportButton').on('click', function () {
-  console.log('submitting');
-}); 
+
 function exportTasks(_this) {
-  	let _url = $(_this).data('href');
-    _url += '?daterange='+$('#daterage').val()+'&sort_by='+$('#sort_by').val();
-    console.log(_url);
-    return;
-  	window.location.href = _url;
+  // let _url = $(_this).data('href');
+  var _url = '/export?test=2';
+  window.location.href = _url;
 }
 
 /***/ }),

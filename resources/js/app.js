@@ -21,13 +21,3 @@ $(function() {
   	});
 });
 
-$('exportButton').on('click', function(){
-	console.log('submitting');
-})
-
-function exportTasks(_this) {
-  	let _url = $(_this).data('href');
-    _url += '?daterange='+$('#daterage').val()+'&sort_by='+$('#sort_by').val();
-    console.log(_url);
-  	window.location.href = _url;
-}
